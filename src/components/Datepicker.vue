@@ -857,11 +857,11 @@ export default {
         this.setInitialView()
       }
     },
-    buildDate(event) {
-      if(!isNaN(new Date(event.currentTarget.value))) {
-        return new Date(event.currentTarget.value);
+    buildDate (event) {
+      if (!isNaN(new Date(event.currentTarget.value))) {
+        return new Date(event.currentTarget.value)
       } else {
-        return undefined;
+        return undefined
       }
     }
   },
