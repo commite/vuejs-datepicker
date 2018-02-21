@@ -22,7 +22,8 @@
         :clear-button="clearButton"
         :disabled="disabledPicker"
         :required="required"
-        readonly>
+        :readonly="readonly"
+        @change="(event) => $emit('selected', buildDate(event))">
       <!-- Clear Button -->
       <span v-if="clearButton && selectedDate" class="vdp-datepicker__clear-button" :class="{'input-group-addon' : bootstrapStyling}" @click="clearDate()">
         <i :class="clearButtonIcon">
@@ -157,6 +158,10 @@ export default {
     maximumView: {
       type: String,
       default: 'year'
+    },
+    readonly: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -850,6 +855,13 @@ export default {
       }
       if (this.isInline) {
         this.setInitialView()
+      }
+    },
+    buildDate(event) {
+      if(!isNaN(new Date(event.currentTarget.value))) {
+        return new Date(event.currentTarget.value);
+      } else {
+        return undefined;
       }
     }
   },
