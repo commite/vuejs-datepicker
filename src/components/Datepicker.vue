@@ -859,7 +859,9 @@ export default {
     },
     buildDate (event) {
       if (!isNaN(new Date(event.currentTarget.value))) {
-        return new Date(event.currentTarget.value)
+        let d = new Date(event.currentTarget.value)
+        d.setMinutes(d.getMinutes() + d.getTimezoneOffset())
+        return d
       } else {
         return undefined
       }
